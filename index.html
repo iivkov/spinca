@@ -55,6 +55,9 @@
         if(response.ok) {
             return response.json()
         }
+    }).then(function(data) {
+        // allTerms = data;
+        console.log(data);
     });
 </script>
 </html>

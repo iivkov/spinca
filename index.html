@@ -28,13 +28,16 @@
     console.log("Tu smo...");
     document.getElementsByClassName("naslov");
     var table = document.getElementById("tablica");
-    var row = table.insertRow(0);
+
+    function addRow() {
+        var row = table.insertRow(0);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     cell1.innerHTML = "novi1...";
     cell2.innerHTML = "novi2...";
     cell3.innerHTML = "novi3...";
+    }
 
     var url = "https://jupitermobiletest.jupiter-software.com:30081/jupitermobilex/gen/api/food";
     fetch(url, { 
@@ -56,8 +59,14 @@
             return response.json()
         }
     }).then(function(data) {
-        // allTerms = data;
         console.log(data);
+        // allTerms = data;
+        for(var i=0; i<Object.keys(data).length; i++)
+        {
+            addRow(table, data[i]["Term"], data[i]["Username"])
+        }
+    }).catch(function(err) {
+        console.warn('Something went wrong: ', err);
     });
 </script>
 </html>

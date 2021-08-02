@@ -5,10 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <style>
+    .naslov {
+        color: red;
+    }
+    </style> -->
 </head>
 <body>
-    <h1>Pojmovnik</h1>
-    <table>
+    <h1 class="naslov">Pojmovnik</h1>
+    <table id="tablica">
         <tr>
             <th>Pojam</th>
             <th>Opis</th>
@@ -16,4 +22,18 @@
         </tr>
     </table>
 </body>
+
+<script>
+    var test = 100;
+    console.log("Tu smo...");
+    document.getElementsByClassName("naslov");
+    var table = document.getElementById("tablica");
+    var row = table.insertRow(0);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(1);
+    cell1.innerHTML = "novi1...";
+    cell2.innerHTML = "novi2...";
+    cell3.innerHTML = "novi3...";
+</script>
 </html>

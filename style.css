@@ -1,3 +1,7 @@
 .naslov {
-    color: red;
+    color: #000080;
   }
+
+table, th, td {
+  border: 1px solid black;
+}

@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <!-- <style>
-    .naslov {
-        color: red;
-    }
-    </style> -->
 </head>
 <body>
     <h1 class="naslov">Pojmovnik</h1>
+
+    <form action="javascript:alert('Sigurno želite predati?');" id="termForm">
+        <input type="text" placeholder="Unesite pojam" id="newName">
+        <input type="text" placeholder="Unesite opis" id="newDescription">
+        <input type="submit" onclick="submitTerm()" value="Predaj">
+    </form>
+
     <table id="tablica">
         <tr>
             <th>Pojam</th>
@@ -24,9 +26,9 @@
 </body>
 
 <script>
-    var test = 100;
-    console.log("Tu smo...");
-    document.getElementsByClassName("naslov");
+    // var test = 100;
+    // console.log("Tu smo...");
+    // document.getElementsByClassName("naslov");
     var table = document.getElementById("tablica");
 
     function addRow(table, data1, data2, data3) {
@@ -68,5 +70,36 @@
     }).catch(function(err) {
         console.warn('Something went wrong: ', err);
     });
+
+    //DODAVANJE
+    function submitTerm() 
+    {
+        fetch(url, { 
+            method: "POST",
+            body: JSON.stringify({
+                "queries": [
+                    {
+                        "query": "SpinCodeAcademy",
+                        "params": {
+                            "action": "insert",
+                            "userid": 4,
+                            "term": newName.value,
+                            "description": newDescription.value
+                        }
+                    }
+                ]
+            }),
+            headers: {'Content-Type': 'application/json'}
+        }).then(function(response) {
+            if(response.ok) {
+                return response.json()
+            }
+        }).then(function(data) {
+            console.log(data);
+            document.getElementById("termForm").submit();
+        }).catch(function(err) {
+            console.warn('Something went wrong: ', err);
+        });
+        }
 </script>
 </html>
